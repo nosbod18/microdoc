@@ -107,8 +107,10 @@
 #include <string.h>
 int main(void) {
         for (char line[2048] = {0}, code = 0; fgets(line, 2048, stdin);) {
-                char const *start = strstr(line, "//""/") == line ? line + 3 + (line[3] == ' ') : NULL;
+                char const *cmt = strstr(line, "//""/") == line ? line + 3 + (line[3] == ' ') : NULL;
+                cmt = cmt ? cmt : strstr(line, "--""-") == line ? line + 3 + (line[3] == ' ') : NULL;
+                cmt = cmt ? cmt : strstr(line, "##""#") == line ? line + 3 + (line[3] == ' ') : NULL;
                 code = strstr(line, "``""`") ? !code : code;
-                printf("%s", code && !start ? line : start ? start : "");
+                printf("%s", code && !cmt ? line : cmt ? cmt : "");
         }
 }
