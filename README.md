@@ -28,8 +28,8 @@ or any other way input can be passed through `stdin`.
 
 ## How it works
 `microdoc` is extremely simple. The entire source without comments is only 9 lines.
-- It scans `stdin` for any "///" comments
-- If a "///" comment is found, it prints that line without the "///" to `stdout`
+- It scans `stdin` for any "///", "---", or "###" comments
+- If one of those is found, it strips the comment and prints that line `stdout`
 
 Thats it.
 
